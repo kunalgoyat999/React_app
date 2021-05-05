@@ -1,40 +1,44 @@
-import React, { Component} from 'react';
-import { connect } from 'react-redux';
-import * as ACTIONS from '../store/actions/actions'
-import history from './history'
-import Auth from './auth'
+import React, { Component } from 'react';
+import history from './history';
+import * as ACTIONS from '../store/actions/actions';
+import { connect } from 'react-redux'
+
+
 
 class AuthCheck extends Component {
-
-    componentDidMount() {
-        if(this.props.Auth.isAuthenticated()) {
-            this.props.login_success()
-            history.replaceState('/')
-        } else{ 
-            this.props.login_failure
-        }
+  componentDidMount() {
+    if(this.props.auth.isAuthenticated()) {
+      this.props.login_success()
+      this.props.add_profile(this.props.auth.userProfile)
+      history.replace('/')
     }
-
-    render () {
-        return (
-            <div>
-
-            </div>
-        )
+    else {
+      this.props.login_failure()
+      this.props.remove_profile()
+      history.replace('/')
     }
+  }
+
+  render() {
+    return(
+        <div>
+        </div>
+    )}
 }
-function mapStateToProps (state) {
-    return{
 
-    }
+function mapStateToProps (state) {
+  return {
+
+  }
 }
 
 function mapDispatchToProps (dispatch) {
-    return{
-       login_success: () => dispatch(ACTIONS.login_success()),
-       login_failure: () => dispatch(ACTIONS.login_failure)
-    }
+  return {
+    login_success: () => dispatch(ACTIONS.login_success()),
+    login_failure: () => dispatch(ACTIONS.login_failure()),
+    add_profile: (profile) => dispatch(ACTIONS.add_profile(profile)),
+    remove_profile: () => dispatch(ACTIONS.remove_profile())
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AuthCheck); 
-
+export default connect(mapStateToProps, mapDispatchToProps)(AuthCheck);

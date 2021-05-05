@@ -1,10 +1,9 @@
 import React from 'react'
 
 const Callback = props => (
-    <div> 
-        Callback 
-        {console.log(props)}
+    <div>
+      Callback
     </div>
-)
+);
 
-export default Callback
+export default Callback;
