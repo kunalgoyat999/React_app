@@ -1,1 +1,1 @@
-# react-redux-app-sample
+# react-redux-app
