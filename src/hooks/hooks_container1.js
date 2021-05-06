@@ -50,6 +50,9 @@ const HooksConatiner1 = () => {
       <button onClick={ () => context.addGlobalValue()}> Add Global Value </button>
       <button onClick={ () => context.decGlobalValue()}> Dec Global Value </button>
       <br></br>
+      <button onClick={ () => context.dispatchContextTrue()}> Dipatch Context True </button>
+      <button onClick={ () => context.dispatchContextFalse()}> Dispatch Context False </button>
+      <br></br>
 
       <div>
           <br></br>
@@ -61,6 +64,11 @@ const HooksConatiner1 = () => {
           {state.stateprop1
             ? <p> State prop1 is true</p>
             : <p> State prop1 is false</p>
+          }
+          <br />
+          {context.reducerGloboalState
+            ? <p> state prop 2 is true </p>
+            : <p> state prop 2 is false </p>
           }
           <p> Local state: {stateValue} </p>
           <br></br>
